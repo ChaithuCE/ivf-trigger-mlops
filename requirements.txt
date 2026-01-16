@@ -1,0 +1,10 @@
+pandas
+numpy
+scikit-learn
+mlflow
+fastapi
+uvicorn[standard]
+streamlit
+requests
+sqlalchemy
+pydantic<2.0
