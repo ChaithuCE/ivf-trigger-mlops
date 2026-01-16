@@ -1,0 +1,22 @@
+artifact_path: file:C:/AI_IVF_Trigger_day/mlruns/1/models/m-5c7cfb5c87894b7a898153a6957666f8/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.5
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+mlflow_version: 3.8.1
+model_id: m-5c7cfb5c87894b7a898153a6957666f8
+model_size_bytes: 269267
+model_uuid: m-5c7cfb5c87894b7a898153a6957666f8
+prompts: null
+run_id: cf37aab879844e2ca7c731a6da7e6e77
+utc_time_created: '2026-01-16 21:56:41.567829'
