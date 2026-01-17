@@ -103,6 +103,25 @@ def train_and_log():
             # Log model
             mlflow.sklearn.log_model(model, artifact_path="model")
 
+                # ---------------------------------------------------------
+    # Choose best model by ROC AUC
+    # ---------------------------------------------------------
+    client = mlflow.tracking.MlflowClient()
+    experiment = client.get_experiment_by_name("IVF_Trigger_Prediction")
+    runs = client.search_runs(
+        experiment_ids=[experiment.experiment_id],
+        order_by=["metrics.roc_auc DESC"],
+        max_results=1,
+    )
+
+    best_run = runs[0]
+    best_run_id = best_run.info.run_id
+    best_roc_auc = best_run.data.metrics["roc_auc"]
+
+    print("Best run_id:", best_run_id)
+    print("Best roc_auc:", best_roc_auc)
+
+
 
 # -------------------------------------------------------------------
 # MAIN

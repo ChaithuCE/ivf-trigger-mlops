@@ -25,7 +25,10 @@ DATA_COLUMNS = [
 ]
 
 TARGET_COL = "trigger_recommended"
-BEST_RUN_ID = "287c1645058940a097ec282b5eef181d"
+
+MODEL_NAME = "ivf_trigger_model"
+MODEL_VERSION = "3"   # use your actual best version number
+
 
 app = FastAPI(title="IVF Trigger Decision API")
 
@@ -50,13 +53,15 @@ def preprocess(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def load_best_model():
-    model_uri = f"runs:/{BEST_RUN_ID}/model"
+def load_production_model():
+    # load by explicit version instead of stage/alias
+    model_uri = f"models:/{MODEL_NAME}/{MODEL_VERSION}"
     model = mlflow.sklearn.load_model(model_uri)
     return model
 
+model = load_production_model()
 
-model = load_best_model()
+
 
 
 class PatientRecord(BaseModel):
