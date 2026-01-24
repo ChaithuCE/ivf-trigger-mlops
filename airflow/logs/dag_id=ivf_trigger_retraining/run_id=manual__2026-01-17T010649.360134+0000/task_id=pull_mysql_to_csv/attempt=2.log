@@ -1,0 +1,25 @@
+[2026-01-17T01:11:55.375+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ivf_trigger_retraining.pull_mysql_to_csv manual__2026-01-17T01:06:49.360134+00:00 [queued]>
+[2026-01-17T01:11:55.387+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ivf_trigger_retraining.pull_mysql_to_csv manual__2026-01-17T01:06:49.360134+00:00 [queued]>
+[2026-01-17T01:11:55.388+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2026-01-17T01:11:55.409+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): pull_mysql_to_csv> on 2026-01-17 01:06:49.360134+00:00
+[2026-01-17T01:11:55.425+0000] {standard_task_runner.py:60} INFO - Started process 739 to run task
+[2026-01-17T01:11:55.433+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ivf_trigger_retraining', 'pull_mysql_to_csv', 'manual__2026-01-17T01:06:49.360134+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/ivf_retrain_dag.py', '--cfg-path', '/tmp/tmp006yqnmq']
+[2026-01-17T01:11:55.438+0000] {standard_task_runner.py:88} INFO - Job 19: Subtask pull_mysql_to_csv
+[2026-01-17T01:11:55.499+0000] {task_command.py:423} INFO - Running <TaskInstance: ivf_trigger_retraining.pull_mysql_to_csv manual__2026-01-17T01:06:49.360134+00:00 [running]> on host 35e4455fc429
+[2026-01-17T01:11:55.627+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='chaithu' AIRFLOW_CTX_DAG_ID='ivf_trigger_retraining' AIRFLOW_CTX_TASK_ID='pull_mysql_to_csv' AIRFLOW_CTX_EXECUTION_DATE='2026-01-17T01:06:49.360134+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-17T01:06:49.360134+00:00'
+[2026-01-17T01:11:55.636+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-01-17T01:11:55.643+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/project && python src/data/pull_mysql_to_csv.py']
+[2026-01-17T01:11:55.673+0000] {subprocess.py:86} INFO - Output:
+[2026-01-17T01:11:55.745+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 1: cd: /opt/***/project: No such file or directory
+[2026-01-17T01:11:55.749+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2026-01-17T01:11:55.768+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-01-17T01:11:55.775+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=ivf_trigger_retraining, task_id=pull_mysql_to_csv, execution_date=20260117T010649, start_date=20260117T011155, end_date=20260117T011155
+[2026-01-17T01:11:55.819+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 19 for task pull_mysql_to_csv (Bash command failed. The command returned a non-zero exit code 1.; 739)
+[2026-01-17T01:11:55.855+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-01-17T01:11:55.898+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -12,9 +12,10 @@ x-airflow-common: &airflow-common
     _AIRFLOW_WWW_USER_USERNAME: airflow
     _AIRFLOW_WWW_USER_PASSWORD: airflow
   volumes:
-    - ./dags:/opt/airflow/dags
-    - ./logs:/opt/airflow/logs
-    - ./plugins:/opt/airflow/plugins
+    - ./airflow/dags:/opt/airflow/dags
+    - ./airflow/logs:/opt/airflow/logs
+    - ./airflow/plugins:/opt/airflow/plugins
+    - ./:/opt/airflow/project          # <== entire IVF project
   user: "50000:0"
   depends_on:
     - postgres
@@ -39,24 +40,20 @@ services:
     command: webserver
     ports:
       - "8080:8080"
-    volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
-      - ./plugins:/opt/airflow/plugins
-      - C:/AI_IVF_Trigger_day/data:/data
+    environment:
+      <<: *airflow-common-env
 
   airflow-scheduler:
     <<: *airflow-common
     command: scheduler
-    volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
-      - ./plugins:/opt/airflow/plugins
-      - C:/AI_IVF_Trigger_day/data:/data
+    environment:
+      <<: *airflow-common-env
 
   airflow-init:
     <<: *airflow-common
     command: version
+    environment:
+      <<: *airflow-common-env
 
 volumes:
   postgres-db-volume:
