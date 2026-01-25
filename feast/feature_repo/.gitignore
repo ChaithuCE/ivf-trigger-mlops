@@ -1,0 +1,8 @@
+# Ignore large binary files
+*.db
+*.parquet
+*.pyc
+__pycache__/
+.featurestorerc
+data/offline/*.parquet
+data/online/*.db

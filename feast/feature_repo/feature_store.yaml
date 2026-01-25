@@ -1,0 +1,10 @@
+project: ai_ivf_trigger_day
+registry: data/registry.db
+provider: local
+
+offline_store:
+  type: file
+
+online_store:
+  type: sqlite
+  path: data/online_store.db
