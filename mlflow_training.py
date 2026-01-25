@@ -1,4 +1,19 @@
 import pandas as pd
+from feast import FeatureStore
+import os
+from datetime import datetime
+
+# Initialize FEAST
+FEAST_REPO_PATH = os.path.join(os.path.dirname(__file__), "feast", "feature_repo")
+fs = FeatureStore(repo_path=FEAST_REPO_PATH)
+
+# Materialize features BEFORE registering model
+print("🔄 Materializing FEAST before model registration...")
+fs.materialize_incremental(end_date=datetime.now())
+print("✅ FEAST materialized!")
+
+# Then continue with your existing registration code...
+
 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
